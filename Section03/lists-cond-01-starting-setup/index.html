@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Course Goals</h1>
+    </header>
+    <section id="user-goals">
+      <h2>My course goals</h2>
+      <input type="text" v-model="enteredGoalValue" />
+      <button @click="addGoal">Add Goal</button>
+
+      <!--
+        1)
+        v-if,v-else-if,v-else 문법 사용 시 반드시 해당 요소들이
+        이웃하는(adjacent) 상태에 있어야 한다.
+
+        2)
+        v-if 구문은 DOM에서 해당 요소를 실제로 삭제 또는 추가한다.
+        v-show는 해당 요소를 display:none할 뿐 실제로 제거 또는 추가하지 않는다.
+        따라서 많은 요소가 추가 또는 제거될 때 v-if 구문이 이상적이지 않을 수 있다.
+       
+        일반적으로 v-if를 사용하고
+        특정 요소의 추가 및 제거가 빈번한 경우 v-show를 사용한다.
+      -->
+      <p v-show="goals.length === 0">
+        No goals have been added yet - please start adding some!
+      </p>
+      <ul>
+        <li v-for="goal in goals">{{ goal }}</li>
+      </ul>
+    </section>
+  </body>
+</html>
