@@ -37,9 +37,31 @@
       <p v-show="goals.length === 0">
         No goals have been added yet - please start adding some!
       </p>
+
+      <!-- 
+        v-for를 사용할 때는 고유 식별 기준이 있는 
+        key를 추가해야 한다.
+        이렇게 해야 Vue가 요소를 구분할 수 있고 입력값 등의 상태가 유실되는
+        일을 막을 수 있다.
+       -->
       <ul>
-        <li v-for="goal in goals">{{ goal }}</li>
+        <li
+          v-for="(goal, index) in goals"
+          :key="goal"
+          @click="removeGoal(index)"
+        >
+          <p>{{ goal }} - {{ index }}</p>
+          <input type="text" @click.stop />
+        </li>
       </ul>
+      <!-- <ul>
+        <li v-for="(num) in 10">{{ num }}</li>
+      </ul> -->
+      <!-- <ul>
+        <li v-for="(value, key) in {name: 'Max', age: 31}">
+          {{ key }}: {{ value }}
+        </li>
+      </ul> -->
     </section>
   </body>
 </html>
