@@ -1,10 +1,16 @@
 <template>
   <section>
-    <div>
+    <base-card>
+    <!-- <template v-slot:header> -->
+      <!-- v-slot은 # 기호로 대체 가능 -->
+    <template #header>
       <h3>{{ fullName }}</h3>
       <base-badge :type="role" :caption="role.toUpperCase()"></base-badge>
-    </div>
-    <p>{{ infoText }}</p>
+    </template>
+    <template #default>
+      <p>{{ infoText }}</p>
+    </template>
+  </base-card>
   </section>
 </template>
 
@@ -14,18 +20,8 @@ export default {
 };
 </script>
 
-<style>
-section {
-  margin: 2rem auto;
-  max-width: 30rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  padding: 1rem;
-}
+<!-- 스타일 태그에 scoped를 붙이면 CSS 설정은 해당 컴포넌트에서만 적용됨 -->
+<style scoped>
 
-section div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+
 </style>
