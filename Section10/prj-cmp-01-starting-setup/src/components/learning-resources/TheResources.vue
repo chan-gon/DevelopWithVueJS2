@@ -15,7 +15,9 @@
   <!-- 
     is 속성에 해당되는 컴포넌트가 렌더링 된다
    -->
-  <component :is="selectedTab"></component>
+  <keep-alive>
+    <component :is="selectedTab"></component>
+  </keep-alive>
 </template>
 
 <script>
@@ -50,6 +52,8 @@ export default {
     return {
       // resources가 모든 낮은 수준의 컴포넌트 즉 모든 자식 컴포넌트 및 손자 컴포넌트에까지 제공된다
       resources: this.storedResources,
+      addResource: this.addResource,
+      deleteResource: this.removeResource,
     };
   },
   computed: {
@@ -63,6 +67,23 @@ export default {
   methods: {
     setSelectedTab(tab) {
       this.selectedTab = tab;
+    },
+    addResource(title, description, link) {
+      const newResource = {
+        id: new Date().toISOString(),
+        title: title,
+        description: description,
+        link: link,
+      };
+      this.storedResources.unshift(newResource);
+      this.selectedTab = 'stored-resources';
+    },
+    removeResource(resId) {
+      const resIndex = this.storedResources.findIndex(
+        (res) => res.id === resId
+      );
+      this.storedResources.splice(resIndex, 1);
+      // console.log(this.storedResources.length);
     },
   },
 };
