@@ -22,6 +22,8 @@ const store = createStore({
       state.counter += payload.value;
     },
   },
+
+  // actions는 비동기 코드에서 중요함
   actions: {
     increment(context) {
       setTimeout(function () {
@@ -29,6 +31,7 @@ const store = createStore({
       }, 2000);
     },
     increase(context, payload) {
+      console.log(context);
       context.commit('increase', payload);
     },
   },
