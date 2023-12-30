@@ -1,6 +1,6 @@
 <template>
   <!-- <h3>{{ counter }}</h3> -->
-  <h3>{{ test }}</h3>
+  <h3>{{ finalCounter }}</h3>
 </template>
 
 <script>
@@ -29,13 +29,16 @@ export default {
      */
     // ...mapGetters(['finalCounter']),
 
+    // 메인 저장소에 modules로 불러온 counterModule 저장소의 key값인 numbers를 사용
+    ...mapGetters('numbers', ['finalCounter']),
+
     /**
      * Getters에 정의된 함수 이름을 그대로 사용하고 싶지 않은 경우
      * 아래와 같이 구현할 수 있다
      */
-    ...mapGetters({
-      test: 'finalCounter',
-    }),
+    // ...mapGetters({
+    //   test: 'finalCounter',
+    // }),
   },
 };
 </script>

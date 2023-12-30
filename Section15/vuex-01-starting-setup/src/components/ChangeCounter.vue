@@ -31,7 +31,7 @@ export default {
      *
      * mapGetters도 동일하게 구현 가능하다
      */
-    ...mapActions({
+    ...mapActions('numbers', {
       test1: 'increment',
       test2: 'increase',
     }),
