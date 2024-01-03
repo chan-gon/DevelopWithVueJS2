@@ -1,5 +1,6 @@
 import { createStore } from 'vuex';
 import coachesModule from './modules/coaches/index.js';
+import requestsModule from './modules/requests/index.js';
 
 const store = createStore({
   modules: {
@@ -8,6 +9,7 @@ const store = createStore({
      * 어떤 네임스페이스를 사용 할 지 명시해야 함
      */
     coaches: coachesModule,
+    requests: requestsModule,
   },
   state() {
     return {
