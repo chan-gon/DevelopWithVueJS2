@@ -30,7 +30,7 @@ const router = createRouter({
     },
     { path: '/register', component: CoachRegistration },
     // contact 양식을 통해 전송된 메시지를 확인하는 라우터
-    { path: '/request', component: RequestsReceive },
+    { path: '/requests', component: RequestsReceive },
     // NOT FOUND 페이지
     { path: '/:noFound(.*)', component: NotFound },
   ],
