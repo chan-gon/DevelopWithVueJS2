@@ -28,7 +28,12 @@ export default {
       id: userId,
     });
   },
-  async loadCoaches(context) {
+  async loadCoaches(context, payload) {
+    // shouldUpdate 상태가 아니라면 현재 저장소에 있는 데이터를 그대로 사용하도록 설정
+    if (!payload.forceRefresh && !context.getters.shouldUpdate) {
+      return;
+    }
+
     const response = await fetch(
       `https://vue-http-demo-299a3-default-rtdb.asia-southeast1.firebasedatabase.app/coaches.json`
     );
@@ -54,5 +59,6 @@ export default {
     }
 
     context.commit('setCoaches', coaches);
+    context.commit('setFetchTimestamp');
   },
 };
