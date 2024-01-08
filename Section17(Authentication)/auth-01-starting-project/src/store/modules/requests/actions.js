@@ -28,8 +28,11 @@ export default {
   },
   async fetchRequests(context) {
     const coachId = context.rootGetters.userId;
+    // 토큰 액세스 위치가 본 모듈이 아닌 루트 저장소이기 때문에 rootGetters 사용
+    const token = context.rootGetters.token;
     const response = await fetch(
-      `https://vue-http-demo-299a3-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${coachId}.json`
+      `https://vue-http-demo-299a3-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${coachId}.json?auth=` +
+        token
     );
     const responseData = await response.json();
 
